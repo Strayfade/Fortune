@@ -1,0 +1,15 @@
+{
+  "name": "fortune",
+  "version": "1.0.0",
+  "description": "An Electron-based HTML viewer for the platform 4chan",
+  "main": "index.js",
+  "scripts": {
+    "test": "electron .",
+    "start": "electron ."
+  },
+  "author": "Strayfade",
+  "license": "MIT",
+  "dependencies": {
+    "electron": "^17.1.0"
+  }
+}

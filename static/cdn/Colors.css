@@ -1,0 +1,21 @@
+:root {
+    --background-color: rgb(10, 10, 10);
+    --foreground-color: rgb(240, 240, 240);
+
+    --background-solid: black;
+    --foreground-solid: white;
+
+    --detail-color: rgb(83, 83, 246);
+}
+
+body {
+    background-color: var(--background-color);
+    color: var(--foreground-color);
+}
+
+.PageHeaderContainer {
+    background: linear-gradient(var(--detail-color), var(--background-color))
+}
+.Container {
+    background: linear-gradient(var(--background-color), var(--detail-color))
+}
