@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- Metadata -->
+    <meta charset="UTF-8">
+    <title>Fortune</title>
+
+    <!-- Font Imports -->
+    <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i">
+
+    <link rel="stylesheet" href="./cdn/Headings.css" media="screen">
+    <link rel="stylesheet" href="./cdn/Colors.css" media="screen">
+    <link rel="stylesheet" href="./cdn/Layout.css" media="screen">
+    <link rel="stylesheet" href="./cdn/Threads.css" media="screen">
+</head>
+
+<body>
+    <div class="PageHeaderContainer">
+        <div style="display: flex">
+            <img src="./cdn/assets/mainicon.png" style="filter: invert(1); height: 50px; width: 50px">
+            <h1 style="margin-top: -5px; margin-left: 20px;">Fortune</h1>
+        </div>
+    </div>
+    <div class="Container">
+        <header style="position: sticky;">
+            <div style="display: flex;">
+                <script>
+                    function UpdateFilters() {
+                        localStorage.setItem("Filter_UnnamedThreads", document.getElementById("ThreadFilter1").value)
+                        location.reload();
+                    }
+                </script>
+                <button class="BackButton" onclick="window.location.replace('./ContentIndex.html')">Back</button>
+                <h1 class="PageHeading" style="text-align: left;" id="BoardTitle">Unnamed Board</h1>
+                <div style="margin-left: 10px; margin-top: 35px; font-family: Roboto">
+                    <input type="checkbox" id="ThreadFilter1" name="Thread Filter" onclick="UpdateFilters()">
+                    <script>
+                        document.getElementById('ThreadFilter1').value = localStorage.getValue('Filter_UnnamedThreads');
+                    </script>
+                    <label for="ThreadFilter1">Hide unnamed threads</label><br>
+                </div>
+            </div>
+        </header>
+
+        <div class="ThreadContainer" id="ThreadContainer">
+        </div>
+    </div>
+
+    <script src="./cdn/LoadBoard.js" onload="LoadPosts(localStorage.getItem('CurrentBoard'), localStorage.getItem('ShortBoardname'))"></script>
+</body>
+
+</html>

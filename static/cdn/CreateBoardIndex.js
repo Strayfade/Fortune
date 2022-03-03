@@ -1,3 +1,10 @@
+function OpenBoard(Boardname, ShortBoardname) {
+    console.log(Boardname)
+    localStorage.setItem("CurrentBoard", Boardname)
+    localStorage.setItem("ShortBoardname", ShortBoardname)
+    window.location.replace("./Board.html")
+}
+
 function LoadBoards() {
     var scripts = document.getElementsByTagName('script');
     var ThisScript = scripts[scripts.length - 1];
@@ -10,10 +17,11 @@ function LoadBoards() {
             console.log(Result);
             for (var i = 0; i < Result.boards.length; i++) {
                 var Curr = Result.boards[i];
-                var link = document.createElement('a');
-                link.addEventListener("click", OpenBoard(Curr.title))
+                var link = document.createElement('button');
+                link.className = "BoardLink";
                 link.innerHTML = "/" + Curr.board + "/ - " + Curr.title;
-                ThisScript.parentNode.insertBefore(link, ThisScript);
+                link.setAttribute("onclick", "OpenBoard('" + "/" + Curr.board + "/ - " + Curr.title + "', '" + Curr.board + "');");
+                document.getElementById("BoardsContainer").appendChild(link);
             }
         } else {
             console.error('Error!');

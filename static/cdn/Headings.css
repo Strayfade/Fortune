@@ -1,36 +1,44 @@
 h1 {
     font-family: Roboto;
-    border-bottom: 1px solid var(--foreground-color);
 }
+
 .PageHeaderContainer h1 {
     font-family: Roboto;
     font-size: 50px;
     border-bottom: none;
     margin: 0px;
 }
+
 h2 {
     font-family: Roboto;
 }
+
 h3 {
     font-family: Roboto;
 }
+
 h4 {
     font-family: Roboto;
 }
+
 h5 {
     font-family: Roboto;
 }
+
 h6 {
     font-family: Roboto;
 }
+
 a {
     font-family: Roboto;
 }
 
 .PageHeading {
-    margin: auto;
     padding: 5px;
+    text-shadow: 0px 0px 10px black;
+    padding-left: 30px;
 }
+
 .Roboto {
     font-family: Roboto;
 }

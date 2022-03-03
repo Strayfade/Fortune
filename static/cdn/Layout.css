@@ -1,14 +1,29 @@
 body {
     overflow-x: hidden;
 }
+
 .PageHeaderContainer {
     padding: 30px;
     margin: -10px;
     margin-bottom: 0px;
 }
+
 .Container {
-    padding: 50px;
+    padding: 20px;
     margin: -10px;
     margin-top: 0px;
-    height: 1080px;
+}
+
+.BackButton {
+    text-shadow: 0px 0px 10px black;
+    font-weight: bold;
+    font-family: Roboto;
+    font-size: 30px;
+    margin: 0px;
+    border: none;
+    padding-right: 30px;
+    border-right: 2px solid white;
+    width: 100px;
+    color: white;
+    background-color: rgba(0, 0, 0, 0);
 }

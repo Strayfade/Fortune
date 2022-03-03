@@ -2,28 +2,34 @@
 <html>
 
 <head>
-  <!-- Metadata -->
-  <meta charset="UTF-8">
-  <title>Fortune Home</title>
+    <!-- Metadata -->
+    <meta charset="UTF-8">
+    <title>Fortune</title>
 
-  <!-- Font Imports -->
-  <link id="u-theme-google-font" rel="stylesheet"
-    href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i">
+    <!-- Font Imports -->
+    <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i">
 
-  <link rel="stylesheet" href="./cdn/Headings.css" media="screen">
-  <link rel="stylesheet" href="./cdn/Colors.css" media="screen">
-  <link rel="stylesheet" href="./cdn/Layout.css" media="screen">
+    <link rel="stylesheet" href="./cdn/Headings.css" media="screen">
+    <link rel="stylesheet" href="./cdn/Colors.css" media="screen">
+    <link rel="stylesheet" href="./cdn/Layout.css" media="screen">
+    <link rel="stylesheet" href="./cdn/Threads.css" media="screen">
 </head>
 
 <body>
-  <div class="PageHeaderContainer">
-    <h1>Fortune</h1>
-  </div>
-  <div class="Container">
-    <h1 class="PageHeading">Content Index</h1>
+    <div class="PageHeaderContainer">
+        <div style="display: flex">
+            <img src="./cdn/assets/mainicon.png" style="filter: invert(1); height: 50px; width: 50px">
+            <h1 style="margin-top: -5px; margin-left: 20px;">Fortune</h1>
+        </div>
+    </div>
+    <div class="Container">
+        <h1 class="PageHeading">Boards</h1>
+        <div id="BoardsContainer">
 
-    <script src="./cdn/CreateBoardIndex.js" onload="LoadBoards()"></script>
-  </div>
+        </div>
+
+        <script src="./cdn/CreateBoardIndex.js" onload="LoadBoards()"></script>
+    </div>
 </body>
 
 </html>

@@ -1,0 +1,93 @@
+.ThreadContainer {
+    padding: 20px;
+}
+
+.Thread {
+    margin-top: 30px;
+    background-color: var(--background-color);
+    border-radius: 25px;
+    border: 2px solid var(--detail-color)
+}
+
+.BoardLink {
+    font-weight: normal;
+    text-align: center;
+    font-size: 15px;
+    background-color: rgba(0, 0, 0, 0);
+    color: white;
+    width: 100%;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    text-decoration: underline;
+    border: none;
+    cursor: pointer;
+    text-shadow: 0px 0px 15px black;
+}
+
+.ThreadTitle {
+    padding-left: 20px;
+    border-bottom: 2px solid var(--detail-color)
+}
+
+.ThreadTag-Neutral {
+    margin: 15px;
+    margin-left: 0px;
+    padding: 5px;
+    background-color: var(--detail-color);
+    border-radius: 5px;
+    font-size: 22px;
+    text-transform: uppercase;
+}
+
+.ThreadTag-Negative {
+    margin: 15px;
+    margin-left: 0px;
+    padding: 5px;
+    background-color: var(--detail-negative);
+    border-radius: 5px;
+    font-size: 22px;
+    text-transform: uppercase;
+}
+
+.ThreadTag-Positive {
+    margin: 15px;
+    margin-left: 0px;
+    padding: 5px;
+    background-color: var(--detail-positive);
+    border-radius: 5px;
+    font-size: 22px;
+    text-transform: uppercase;
+}
+
+.ThreadContent {
+    margin-bottom: 40px;
+    margin-top: 20px;
+    padding-left: 20px;
+    color: var(--foreground-color);
+    font-weight: normal;
+}
+
+.ThreadDetails {
+    margin-top: -20px;
+    padding-left: 20px;
+    color: gray;
+    font-weight: normal;
+}
+
+.ThreadViewButton {
+    background-color: rgba(0, 0, 0, 0);
+    color: white;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    font-size: medium;
+    border: none;
+    flex: 10px;
+    border-left: 2px solid var(--detail-color);
+    cursor: pointer;
+}
+
+.ThreadViewButton:hover {
+    background-color: var(--detail-color);
+}
