@@ -1,5 +1,4 @@
 function OpenBoard(Boardname, ShortBoardname) {
-    console.log(Boardname)
     localStorage.setItem("CurrentBoard", Boardname)
     localStorage.setItem("ShortBoardname", ShortBoardname)
     window.location.replace("./Board.html")
@@ -14,7 +13,6 @@ function LoadBoards() {
     xhr.onload = () => {
         if (xhr.status == 200) {
             var Result = JSON.parse(xhr.response);
-            console.log(Result);
             for (var i = 0; i < Result.boards.length; i++) {
                 var Curr = Result.boards[i];
                 var link = document.createElement('button');

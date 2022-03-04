@@ -1,6 +1,6 @@
 const { app, BrowserWindow } = require('electron')
 const path = require('path')
-const shellModule = require("shell");
+const open = require('open');
 
 const WindowTitle = "Fortune"
 const WindowIcon = "./package/icon.png"
@@ -11,22 +11,17 @@ app.whenReady().then(() => {
         width: 800,
         height: 600,
         webPreferences: {
-            nodeIntegration: true
+            nodeIntegration: true,
+            zoomFactor: 0.75
         }
     })
     win.setIcon(WindowIcon);
     win.setTitle(WindowTitle)
     win.loadFile(FortuneMain)
 
-    win.webContents.on('new-window', function(e, url) {
-        // make sure local urls stay in electron perimeter
-        if ('file://' === url.substr(0, 'file://'.length)) {
-            return;
-        }
-
-        // and open every other protocols on the browser      
-        e.preventDefault();
-        shellModule.openExternal(url);
+    win.webContents.setWindowOpenHandler(({ url }) => {
+        open(url);
+        return { action: 'deny' };
     });
 
     app.on('activate', () => {

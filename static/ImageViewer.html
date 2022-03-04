@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="./cdn/Colors.css" media="screen">
     <link rel="stylesheet" href="./cdn/Layout.css" media="screen">
     <link rel="stylesheet" href="./cdn/Threads.css" media="screen">
+    <script src="./cdn/CreateBoardIndex.js"></script>
 </head>
 
 <body>
@@ -25,19 +26,20 @@
     <div class="Container">
         <header style="position: sticky;">
             <div style="display: flex;">
-                <button class="BackButton" onclick="window.location.replace('./ContentIndex.html')">Back</button>
-                <h1 class="PageHeading" style="text-align: left;" id="BoardTitle">Unnamed Board</h1>
-                <script>
-                    document.getElementById('BoardTitle').innerHTML = localStorage.getItem('CurrentBoard')
-                </script>
+                <button class="BackButton" onclick="window.location.replace('./Thread.html')">Back</button>
+                <h1 class="PageHeading" style="text-align: left;" id="ThreadTitle">Image</h1>
             </div>
         </header>
 
-        <div class="ThreadContainer" id="ThreadContainer">
+        <div class="ThreadContainer" id="PostContainer">
+            <img src="" style="align-items: center;" id="Viewer" alt="Loading Image..." onclick="window.location.replace('./Thread.html')">
+            <script>
+                document.getElementById("ThreadTitle").innerHTML = localStorage.getItem('CurrentBoard') + " > " + localStorage.getItem('ThreadName') + " > Image"
+                document.getElementById("Viewer").src = localStorage.getItem('ImageCache').replace("s.", ".")
+                document.getElementById("Viewer").alt = localStorage.getItem('ImageCache').replace("s.", ".")
+            </script>
         </div>
     </div>
-
-    <script src="./cdn/LoadBoard.js" onload="LoadPosts(localStorage.getItem('CurrentBoard'), localStorage.getItem('ShortBoardname'))"></script>
 </body>
 
 </html>

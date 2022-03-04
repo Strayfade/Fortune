@@ -11,13 +11,12 @@ function LoadPosts(Boardname, ShortBoardname) {
     xhr.onload = () => {
         if (xhr.status == 200) {
             var Result = JSON.parse(xhr.response);
-            console.log(Result);
+
             // For each page
             for (var i = 0; i < Result.length; i++) {
                 // For each thread in each page
                 for (var y = 0; y < Result[i].threads.length; y++) {
                     var CurrThread = Result[i].threads[y];
-                    console.log(CurrThread)
 
                     // Main Thread
                     var Thread = document.createElement('div');
@@ -51,47 +50,60 @@ function LoadPosts(Boardname, ShortBoardname) {
                         TitleFlex.appendChild(ThreadTag2)
                     }
 
-                    function Linkify(inputText) {
-                        //URLs starting with http://, https://, or ftp://
-                        var replacePattern1 = /(\b(https?|ftp):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/gim;
-                        var replacedText = inputText.replace(replacePattern1, '<a href="$1" target="_blank">$1</a>');
-
-                        //URLs starting with www. (without // before it, or it'd re-link the ones done above)
-                        var replacePattern2 = /(^|[^\/])(www\.[\S]+(\b|$))/gim;
-                        var replacedText = replacedText.replace(replacePattern2, '$1<a href="http://$2" target="_blank">$2</a>');
-
-                        //Change email addresses to mailto:: links
-                        var replacePattern3 = /(\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,6})/gim;
-                        var replacedText = replacedText.replace(replacePattern3, '<a href="mailto:$1">$1</a>');
-
-                        return replacedText
+                    var ThreadContent = document.createElement("h4");
+                    ThreadContent.className = "ThreadContent";
+                    if (CurrThread.com) {
+                        var NewMessage = "";
+                        var Switching = true
+                        var Splits = CurrThread.com.toString()
+                        for (var k = 0; k < Splits.length; k++) {
+                            if (Splits[k] == ">") {
+                                Switching = true;
+                            }
+                            if (Splits[k] == "<" && Splits[k + 1] == "a") {
+                                Switching = false;
+                            }
+                            if (Switching) {
+                                NewMessage += Splits[k]
+                            }
+                        }
+                        ThreadContent.innerHTML = NewMessage;
+                    }
+                    else {
+                        ThreadContent.innerHTML = ""
                     }
 
-                    var ThreadContent = document.createElement("h4")
-                    ThreadContent.className = "ThreadContent"
-                    var p = CurrThread.com.toString();
-                    p = Linkify(p)
-                    ThreadContent.innerHTML = p;
-
-                    var ThreadDetails = document.createElement("h4")
-                    ThreadDetails.className = "ThreadDetails"
-                    ThreadDetails.innerHTML = CurrThread.replies + " Replies | Last Modified " + new Date(CurrThread.last_modified * 1000).toLocaleDateString()
+                    var ThreadDetails = document.createElement("h4");
+                    ThreadDetails.className = "ThreadDetails";
+                    ThreadDetails.innerHTML = !CurrThread.name ? "" : CurrThread.name + " | " + CurrThread.replies + " Replies | Last Modified " + new Date(CurrThread.last_modified * 1000).toLocaleDateString();
 
                     // Thread View Button
                     var ThreadSeparator = document.createElement('div')
                     ThreadSeparator.style.display = "flex";
                     var ThreadSeparatorChild = document.createElement('div')
-                    ThreadSeparatorChild.style.flex = "80%"
+                    ThreadSeparatorChild.style.flex = "60%"
                     var ThreadViewButton = document.createElement('button')
                     ThreadViewButton.className = "ThreadViewButton"
                     ThreadViewButton.innerHTML = "View Thread"
+                    ThreadViewButton.setAttribute('onclick', "localStorage.setItem('ThreadId', " + CurrThread.no.toString() + "); localStorage.setItem('ThreadName', '" + (!CurrThread.sub ? "Thread" : CurrThread.sub) + "'); window.location.replace('./Thread.html')")
+                    
+                    // Thread Images
+                    if (CurrThread.tim) {
+                        var Image = document.createElement("img");
+                        Image.style.maxWidth = "20%"
+                        Image.style.maxHeight = "20%"
+                        Image.style.height = "100%"
+                        Image.style.borderTopLeftRadius = "20px"
+                        Image.style.borderBottomLeftRadius = "20px"
+                        Image.src = "https://i.4cdn.org/" + localStorage.getItem('ShortBoardname') + "/" + CurrThread.tim + CurrThread.ext
+                        Image.setAttribute('onclick', "localStorage.setItem('ThreadId', " + CurrThread.no.toString() + "); localStorage.setItem('ThreadName', '" + (!CurrThread.sub ? "Thread" : CurrThread.sub) + "'); window.location.replace('./Thread.html')")
+                        ThreadSeparator.appendChild(Image)
+                    }
 
                     TitleFlex.appendChild(ThreadTitle)
+
                     if (CurrThread.sub) {
                         ThreadSeparatorChild.appendChild(TitleFlex)
-                    } else {
-
-                        ThreadSeparatorChild.appendChild(ThreadTitle)
                     }
 
                     ThreadSeparatorChild.appendChild(ThreadContent)

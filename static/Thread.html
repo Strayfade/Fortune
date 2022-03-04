@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="./cdn/Colors.css" media="screen">
     <link rel="stylesheet" href="./cdn/Layout.css" media="screen">
     <link rel="stylesheet" href="./cdn/Threads.css" media="screen">
+    <script src="./cdn/CreateBoardIndex.js"></script>
 </head>
 
 <body>
@@ -23,13 +24,18 @@
         </div>
     </div>
     <div class="Container">
-        <h1 class="PageHeading">Boards</h1>
-        <div id="BoardsContainer">
+        <header style="position: sticky;">
+            <div style="display: flex;">
+                <button class="BackButton" onclick="window.location.replace('./Board.html')">Back</button>
+                <h1 class="PageHeading" style="text-align: left;" id="ThreadTitle">Unnamed Thread</h1>
+            </div>
+        </header>
 
+        <div class="ThreadContainer" id="PostContainer">
         </div>
-
-        <script src="./cdn/CreateBoardIndex.js" onload="LoadBoards()"></script>
     </div>
+
+    <script src="./cdn/LoadThread.js" onload="LoadThread(localStorage.getItem('ThreadId'), localStorage.getItem('ThreadName'))"></script>
 </body>
 
 </html>
