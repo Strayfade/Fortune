@@ -5,6 +5,8 @@
     --foreground-solid: white;
     --detail-color: rgb(82, 82, 82);
     --link: rgb(50, 50, 200);
+    --quote-color: rgb(100, 250, 100);
+    --quotelink-color: rgb(129, 169, 255);
     --detail-negative: rgb(141, 0, 0);
     --detail-positive: rgb(0, 141, 0);
 }

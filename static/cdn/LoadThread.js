@@ -11,17 +11,19 @@ function LoadThread(ThreadId, ThreadName) {
     xhr.onload = () => {
         if (xhr.status == 200) {
             var Result = JSON.parse(xhr.response);
+            console.log(Result)
             for (var x = 0; x < Result.posts.length; x++) {
                 CurrPost = Result.posts[x];
 
                 // Main Thread
                 var Thread = document.createElement('div');
                 Thread.className = "Thread";
+                Thread.style.marginTop = "10px"
                 if (x > 0) {
-                    Thread.style.marginTop = "5px"
-                    Thread.style.marginLeft = "3%";
-                    Thread.style.width = "94%";
+                    Thread.style.marginLeft = "5%";
+                    Thread.style.width = "95%";
                 }
+                Thread.id = "p" + CurrPost.no;
 
                 var ThreadContent = document.createElement("h4");
                 ThreadContent.className = "ThreadContent";
@@ -30,6 +32,7 @@ function LoadThread(ThreadId, ThreadName) {
                     var Switching = true
                     var Splits = CurrPost.com.toString()
                     for (var k = 0; k < Splits.length; k++) {
+                        Splits = Splits.replace(">>>", '<p class="quotelink">')
                         if (Splits[k] == ">") {
                             Switching = true;
                         }
@@ -40,15 +43,14 @@ function LoadThread(ThreadId, ThreadName) {
                             NewMessage += Splits[k]
                         }
                     }
-                    ThreadContent.innerHTML = NewMessage;
-                }
-                else {
+                    ThreadContent.innerHTML = Splits;
+                } else {
                     ThreadContent.innerHTML = ""
                 }
 
                 var ThreadDetails = document.createElement("h4");
                 ThreadDetails.className = "ThreadDetails";
-                ThreadDetails.innerHTML = !CurrPost.name ? "" : CurrPost.name + (!CurrPost.replies ? "" : " | " +  CurrPost.replies + " Replies ") + " | Last Modified " + new Date(CurrPost.time * 1000).toLocaleDateString();
+                ThreadDetails.innerHTML = (!CurrPost.no ? "" : (CurrPost.no + " | ")) + (!CurrPost.name ? "" : (CurrPost.name + " | ")) + (!CurrPost.replies ? "" : CurrPost.replies + " Replies | ") + "Last Modified " + new Date(CurrPost.time * 1000).toLocaleDateString();
 
                 var ThreadSeparator = document.createElement('div')
                 ThreadSeparator.style.display = "flex";
@@ -56,24 +58,35 @@ function LoadThread(ThreadId, ThreadName) {
                 ThreadSeparatorChild.style.flex = "60%"
 
                 // Thread Images
-                if (CurrPost.tim)
-                {
+                if (CurrPost.tim) {
                     var Image = document.createElement("img");
                     Image.style.maxWidth = "20%"
                     Image.style.maxHeight = "20%"
                     Image.style.height = "100%"
                     Image.style.borderTopLeftRadius = "20px"
                     Image.style.borderBottomLeftRadius = "20px"
+                    Image.style.cursor = "pointer"
                     Image.src = "https://i.4cdn.org/" + localStorage.getItem('ShortBoardname') + "/" + CurrPost.tim + CurrPost.ext
                     Image.setAttribute("onclick", "localStorage.setItem('ImageCache', '" + Image.src + "'); window.location.replace('./ImageViewer.html')")
                     ThreadSeparator.appendChild(Image)
                 }
 
-                ThreadSeparatorChild.appendChild(ThreadContent)
-                ThreadSeparatorChild.appendChild(ThreadDetails)
-                ThreadSeparator.appendChild(ThreadSeparatorChild)
-                Thread.appendChild(ThreadSeparator)
-                Container.appendChild(Thread);
+                ThreadSeparatorChild.appendChild(ThreadContent);
+                ThreadSeparatorChild.appendChild(ThreadDetails);
+                ThreadSeparator.appendChild(ThreadSeparatorChild);
+                Thread.appendChild(ThreadSeparator);
+
+                if (CurrPost.resto) {
+                    var divcont = document.createElement('div')
+                    divcont.appendChild(Thread);
+                    divcont.style.borderLeft = "1px solid var(--foreground-color)"
+                    divcont.style.marginLeft = "2.5%";
+                    Thread.style.width = "97.5%";
+                    Thread.style.marginLeft = "2.5%";
+                    Container.appendChild(divcont)
+                } else {
+                    Container.appendChild(Thread);
+                }
             }
         } else {
             console.error('Error!');
