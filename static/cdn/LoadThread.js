@@ -11,6 +11,7 @@ function LoadThread(ThreadId, ThreadName) {
     xhr.onload = () => {
         if (xhr.status == 200) {
             var Result = JSON.parse(xhr.response);
+            console.log(Result)
             for (var x = 0; x < Result.posts.length; x++) {
                 CurrPost = Result.posts[x];
 
@@ -48,7 +49,7 @@ function LoadThread(ThreadId, ThreadName) {
 
                 var ThreadDetails = document.createElement("h4");
                 ThreadDetails.className = "ThreadDetails";
-                ThreadDetails.innerHTML = !CurrPost.name ? "" : CurrPost.name + (!CurrPost.replies ? "" : " | " +  CurrPost.replies + " Replies ") + " | Last Modified " + new Date(CurrPost.time * 1000).toLocaleDateString();
+                ThreadDetails.innerHTML = CurrPost.no + " | " + (!CurrPost.name ? "" : CurrPost.name) + (!CurrPost.replies ? "" : " | " +  CurrPost.replies + " Replies ") + " | Last Modified " + new Date(CurrPost.time * 1000).toLocaleDateString();
 
                 var ThreadSeparator = document.createElement('div')
                 ThreadSeparator.style.display = "flex";
@@ -74,6 +75,7 @@ function LoadThread(ThreadId, ThreadName) {
                 ThreadSeparator.appendChild(ThreadSeparatorChild)
                 Thread.appendChild(ThreadSeparator)
                 Container.appendChild(Thread);
+                console.log(!CurrPost.com ? "" : CurrPost.com)
             }
         } else {
             console.error('Error!');

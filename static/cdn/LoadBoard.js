@@ -75,7 +75,7 @@ function LoadPosts(Boardname, ShortBoardname) {
 
                     var ThreadDetails = document.createElement("h4");
                     ThreadDetails.className = "ThreadDetails";
-                    ThreadDetails.innerHTML = !CurrThread.name ? "" : CurrThread.name + " | " + CurrThread.replies + " Replies | Last Modified " + new Date(CurrThread.last_modified * 1000).toLocaleDateString();
+                    ThreadDetails.innerHTML = (!CurrThread.no ? "" : CurrThread.no + " | ") + (!CurrThread.name ? "" : CurrThread.name + " | ") + CurrThread.replies + " Replies | Last Modified " + new Date(CurrThread.last_modified * 1000).toLocaleDateString();
 
                     // Thread View Button
                     var ThreadSeparator = document.createElement('div')
