@@ -91,3 +91,17 @@
 .ThreadViewButton:hover {
     background-color: var(--detail-color);
 }
+
+.quote {
+    color: var(--quote-color);
+}
+
+.quotelink {
+    color: var(--quotelink-color);
+    text-decoration: none;
+}
+
+.quotelink:hover {
+    color: var(--foreground-color);
+    text-decoration: underline;
+}

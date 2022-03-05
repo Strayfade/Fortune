@@ -68,14 +68,13 @@ function LoadPosts(Boardname, ShortBoardname) {
                             }
                         }
                         ThreadContent.innerHTML = NewMessage;
-                    }
-                    else {
+                    } else {
                         ThreadContent.innerHTML = ""
                     }
 
                     var ThreadDetails = document.createElement("h4");
                     ThreadDetails.className = "ThreadDetails";
-                    ThreadDetails.innerHTML = (!CurrThread.no ? "" : CurrThread.no + " | ") + (!CurrThread.name ? "" : CurrThread.name + " | ") + CurrThread.replies + " Replies | Last Modified " + new Date(CurrThread.last_modified * 1000).toLocaleDateString();
+                    ThreadDetails.innerHTML = (!CurrThread.no ? "" : (CurrThread.no + " | ")) + (!CurrThread.name ? "" : (CurrThread.name + " | ")) + CurrThread.replies + " Replies | Last Modified " + new Date(CurrThread.last_modified * 1000).toLocaleDateString();
 
                     // Thread View Button
                     var ThreadSeparator = document.createElement('div')
@@ -86,7 +85,7 @@ function LoadPosts(Boardname, ShortBoardname) {
                     ThreadViewButton.className = "ThreadViewButton"
                     ThreadViewButton.innerHTML = "View Thread"
                     ThreadViewButton.setAttribute('onclick', "localStorage.setItem('ThreadId', " + CurrThread.no.toString() + "); localStorage.setItem('ThreadName', '" + (!CurrThread.sub ? "Thread" : CurrThread.sub) + "'); window.location.replace('./Thread.html')")
-                    
+
                     // Thread Images
                     if (CurrThread.tim) {
                         var Image = document.createElement("img");
@@ -95,6 +94,7 @@ function LoadPosts(Boardname, ShortBoardname) {
                         Image.style.height = "100%"
                         Image.style.borderTopLeftRadius = "20px"
                         Image.style.borderBottomLeftRadius = "20px"
+                        Image.style.cursor = "pointer"
                         Image.src = "https://i.4cdn.org/" + localStorage.getItem('ShortBoardname') + "/" + CurrThread.tim + CurrThread.ext
                         Image.setAttribute('onclick', "localStorage.setItem('ThreadId', " + CurrThread.no.toString() + "); localStorage.setItem('ThreadName', '" + (!CurrThread.sub ? "Thread" : CurrThread.sub) + "'); window.location.replace('./Thread.html')")
                         ThreadSeparator.appendChild(Image)
