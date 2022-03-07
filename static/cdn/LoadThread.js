@@ -50,7 +50,7 @@ function LoadThread(ThreadId, ThreadName) {
 
                 var ThreadDetails = document.createElement("h4");
                 ThreadDetails.className = "ThreadDetails";
-                ThreadDetails.innerHTML = (!CurrPost.no ? "" : (CurrPost.no + " | ")) + (!CurrPost.name ? "" : (CurrPost.name + " | ")) + (!CurrPost.replies ? "" : CurrPost.replies + " Replies | ") + "Last Modified " + new Date(CurrPost.time * 1000).toLocaleDateString();
+                ThreadDetails.innerHTML = (!CurrPost.no ? "" : (CurrPost.no + " | ")) + (!CurrPost.name ? "" : (CurrPost.name + " | ")) + (!CurrPost.replies ? "" : CurrPost.replies + " Replies, " + CurrPost.images + " Images | ") + "Last Modified " + new Date(CurrPost.time * 1000).toLocaleDateString();
 
                 var ThreadSeparator = document.createElement('div')
                 ThreadSeparator.style.display = "flex";
@@ -69,6 +69,7 @@ function LoadThread(ThreadId, ThreadName) {
                     Image.src = "https://i.4cdn.org/" + localStorage.getItem('ShortBoardname') + "/" + CurrPost.tim + CurrPost.ext
                     Image.setAttribute("onclick", "localStorage.setItem('ImageCache', '" + Image.src + "'); window.location.replace('./ImageViewer.html')")
                     ThreadSeparator.appendChild(Image)
+                    ThreadDetails.innerHTML += " | " + CurrPost.w + "x" + CurrPost.h
                 }
 
                 ThreadSeparatorChild.appendChild(ThreadContent);
@@ -79,10 +80,8 @@ function LoadThread(ThreadId, ThreadName) {
                 if (CurrPost.resto) {
                     var divcont = document.createElement('div')
                     divcont.appendChild(Thread);
-                    divcont.style.borderLeft = "1px solid var(--foreground-color)"
-                    divcont.style.marginLeft = "2.5%";
-                    Thread.style.width = "97.5%";
-                    Thread.style.marginLeft = "2.5%";
+                    divcont.style.marginLeft = "5%";
+                    Thread.style.width = "95%";
                     Container.appendChild(divcont)
                 } else {
                     Container.appendChild(Thread);
