@@ -1,3 +1,10 @@
+function bytesToSize(bytes) {
+    var sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
+    if (bytes == 0) return '0 Byte';
+    var i = parseInt(Math.floor(Math.log(bytes) / Math.log(1024)));
+    return Math.round(bytes / Math.pow(1024, i), 2) + ' ' + sizes[i];
+}
+
 function LoadPosts(Boardname, ShortBoardname) {
     document.getElementById("BoardTitle").innerHTML = "Loading " + Boardname
 
@@ -98,7 +105,7 @@ function LoadPosts(Boardname, ShortBoardname) {
                         Image.src = "https://i.4cdn.org/" + localStorage.getItem('ShortBoardname') + "/" + CurrThread.tim + CurrThread.ext
                         Image.setAttribute('onclick', "localStorage.setItem('ThreadId', " + CurrThread.no.toString() + "); localStorage.setItem('ThreadName', '" + (!CurrThread.sub ? "Thread" : CurrThread.sub) + "'); window.location.replace('./Thread.html')")
                         ThreadSeparator.appendChild(Image)
-                        ThreadDetails.innerHTML += " | " + CurrThread.w + "x" + CurrThread.h
+                        ThreadDetails.innerHTML += " | " + CurrThread.w + "x" + CurrThread.h + " | " + bytesToSize(CurrPost.fsize)
                     }
 
                     TitleFlex.appendChild(ThreadTitle)
