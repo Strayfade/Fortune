@@ -1,6 +1,5 @@
 const { app, BrowserWindow } = require('electron')
 const path = require('path')
-const open = require('open');
 
 const WindowTitle = "Fortune"
 const WindowIcon = "./package/icon.png"
@@ -20,7 +19,6 @@ app.whenReady().then(() => {
     win.loadFile(FortuneMain)
 
     win.webContents.setWindowOpenHandler(({ url }) => {
-        open(url);
         return { action: 'deny' };
     });
 
