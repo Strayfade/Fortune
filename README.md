@@ -3,6 +3,9 @@
 # Fortune
 An HTML viewer for 4chan that is a bit easier on the eyes.
 
+<img src="https://img.shields.io/github/license/Strayfade/Fortune?color=red&style=flat-square">
+<img src="https://img.shields.io/badge/Electron-17.1.0-blue?style=flat-square">
+
 # Usage
 Alright big boys, you already know the deal here, classic README, here's what's going on.
 

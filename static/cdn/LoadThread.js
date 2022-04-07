@@ -76,7 +76,7 @@ function LoadThread(ThreadId, ThreadName) {
                     Image.src = "https://i.4cdn.org/" + localStorage.getItem('ShortBoardname') + "/" + CurrPost.tim + CurrPost.ext
                     Image.setAttribute("onclick", "localStorage.setItem('ImageCache', '" + Image.src + "'); window.location.replace('./ImageViewer.html')")
                     ThreadSeparator.appendChild(Image)
-                    ThreadDetails.innerHTML += " | " + CurrPost.w + "x" + CurrPost.h
+                    ThreadDetails.innerHTML += " | " + CurrPost.w + "x" + CurrPost.h + " | " + bytesToSize(CurrPost.fsize)
                 }
 
                 ThreadSeparatorChild.appendChild(ThreadContent);

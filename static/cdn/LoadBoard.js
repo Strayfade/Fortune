@@ -105,7 +105,7 @@ function LoadPosts(Boardname, ShortBoardname) {
                         Image.src = "https://i.4cdn.org/" + localStorage.getItem('ShortBoardname') + "/" + CurrThread.tim + CurrThread.ext
                         Image.setAttribute('onclick', "localStorage.setItem('ThreadId', " + CurrThread.no.toString() + "); localStorage.setItem('ThreadName', '" + (!CurrThread.sub ? "Thread" : CurrThread.sub) + "'); window.location.replace('./Thread.html')")
                         ThreadSeparator.appendChild(Image)
-                        ThreadDetails.innerHTML += " | " + CurrThread.w + "x" + CurrThread.h + " | " + bytesToSize(CurrPost.fsize)
+                        ThreadDetails.innerHTML += " | " + CurrThread.w + "x" + CurrThread.h + " | " + bytesToSize(CurrThread.fsize)
                     }
 
                     TitleFlex.appendChild(ThreadTitle)
